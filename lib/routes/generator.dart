@@ -1,5 +1,7 @@
+import 'package:carrot/Screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:carrot/main.dart';
+import 'package:carrot/Screens/login.dart';
 import 'package:carrot/Screens/signup.dart';
 
 class RouteGenerator {
@@ -9,11 +11,16 @@ class RouteGenerator {
 
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => const Login());
+        return MaterialPageRoute(builder: (_) => LoginPage());
       case '/signup':
         // Validation of correct data type
         return MaterialPageRoute(
           builder: (_) => SignUp(),
+        );
+      case '/home':
+        // Validation of correct data type
+        return MaterialPageRoute(
+          builder: (_) => Home(),
         );
         // If args is not of the correct type, return an error page.
         // You can also throw an exception while in development.

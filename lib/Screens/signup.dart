@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -113,7 +112,7 @@ class SignUp extends StatelessWidget {
                       if (_formKey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text("Processing data")));
-                        signup;
+                        signup(context);
                       }
                     },
                     child: const Text(
@@ -163,7 +162,17 @@ class SignUp extends StatelessWidget {
     );
   }
 
-  void signup() {
-    
+  void signup(BuildContext context) {
+    if (password.text == password2.text) {
+      try {
+        FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: email.text, password: password.text);
+      } catch (e) {
+        print(e);
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("The two passwords doesn't match")));
+    }
   }
 }

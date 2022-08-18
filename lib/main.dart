@@ -1,8 +1,14 @@
+import 'package:carrot/providers/user_provider.dart';
 import 'package:flutter/material.dart';
-
 import 'package:carrot/Screens/login.dart';
+import 'package:provider/provider.dart';
+import 'Screens/main_screen.dart';
 import 'routes/generator.dart';
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -12,23 +18,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Carrot',
-      theme: ThemeData(
-        fontFamily: "Noto Sans",
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: const Color.fromARGB(255, 82, 205, 109),
+    return ChangeNotifierProvider(
+      create: (context) => Indexprovider(),
+      child: MaterialApp(
+        title: 'Carrot',
+        theme: ThemeData(
+          fontFamily: "Noto Sans",
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: const Color.fromARGB(255, 82, 205, 109),
+          ),
         ),
+        home: const MainPage(),
+        initialRoute: '/',
+        onGenerateRoute: RouteGenerator.generateRoute,
       ),
-      home: const Login(),
-      initialRoute: '/',
-      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
-class Login extends StatefulWidget{
-  const Login({Key? key}):super(key: key);
-  @override
-  State<Login> createState() => LoginPage();
-}
-

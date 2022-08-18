@@ -1,15 +1,33 @@
-import 'package:carrot/authintication/auth.dart';
-import 'package:flutter/material.dart';
-import 'package:carrot/main.dart';
-
+import 'package:carrot/providers/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class LoginPage extends State<Login> {
-  LoginPage({Key? key});
+class LoginPage extends StatelessWidget {
+  LoginPage({Key? key}) : super(key: key);
   final email = TextEditingController();
   final password = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  void login(BuildContext context) {
+    try {
+      FirebaseAuth.instance.signInWithEmailAndPassword(email: email.text, password: password.text);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("No user found for that email.")));
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Wrong password provided.")));
+      }
+    }catch(e){
+      ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("Error happened")));
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,9 +115,9 @@ class LoginPage extends State<Login> {
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Processing Data')),
+                              const SnackBar(content: Text('Loading')),
                             );
-                            login;
+                            login(context);
                           }
                         },
                         child: const Text(
@@ -122,7 +140,9 @@ class LoginPage extends State<Login> {
                         ),
                       ),
                       InkWell(
-                        onTap: signup,
+                        onTap: () {
+                          Navigator.of(context).pushNamed("/signup");
+                        },
                         child: const Text(
                           "Create one",
                           style: TextStyle(
@@ -141,11 +161,5 @@ class LoginPage extends State<Login> {
         ),
       ),
     );
-  }
-
-  void login() {}
-
-  void signup() {
-    Navigator.of(context).pushNamed("/signup");
   }
 }
