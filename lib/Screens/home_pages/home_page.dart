@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 import '../../providers/products_provider.dart';
@@ -16,7 +17,8 @@ class HomePage extends StatelessWidget {
           if (state.data.length > 0) {
             return Scaffold(
               backgroundColor: Color.fromARGB(31, 240, 240, 240),
-              body: Column(
+              body: ListView(
+                physics: AlwaysScrollableScrollPhysics(),
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -35,15 +37,16 @@ class HomePage extends StatelessWidget {
                     itemCount: 7,
                     gridDelegate:
                         const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200,
+                      maxCrossAxisExtent: 220,
                       childAspectRatio: 1.5,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
                     ),
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
-
-                        margin: const EdgeInsets.symmetric(vertical: 8.0),
+                        height: 150,
+                        width: 110,
+                        margin: const EdgeInsets.symmetric(vertical: 4.0),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -51,23 +54,28 @@ class HomePage extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            Text(
-                              state.data[index]['name'],
-                              style: const TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.center,
+                            Container(
+                              padding: EdgeInsets.all(6.0),
+                              child: Text(
+                                state.data[index]['name'],
+                                style: const TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                             Container(
-                              height: 50,
-                              width: 70,
+                              height: 70,
+                              width: 90,
                               child: Image.network(state.data[index]['image']),
                             )
-                            
                           ],
                         ),
                       );
                     },
-                  )
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
                 ],
               ),
             );
