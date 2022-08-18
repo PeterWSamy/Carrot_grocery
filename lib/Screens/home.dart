@@ -1,19 +1,18 @@
-import 'package:carrot/main.dart';
-import 'package:carrot/providers/user_provider.dart';
+import 'package:carrot/providers/index_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:carrot/Screens/home_page.dart';
+import 'package:carrot/Screens/home_pages/home_page.dart';
 import 'package:carrot/Screens/search_page.dart';
 import 'package:carrot/Screens/cart.dart';
 import 'package:carrot/Screens/campaigns.dart';
 import 'package:carrot/Screens/profile_page.dart';
 
 class Home extends StatelessWidget {
-  Home({Key? key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   static List<Widget> _pages = <Widget>[
-    HomePage(), SearchPage(),Cart(),Campaigns(),ProfilePage()
+   HomePage(), SearchPage(),Cart(),Campaigns(),ProfilePage()
   ];
   @override
   Widget build(BuildContext context) {
@@ -60,7 +59,7 @@ class Home extends StatelessWidget {
               BottomNavigationBarItem(
                   icon: Icon(Icons.shopping_cart), label: "Cart"),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.abc_sharp), label: "Campains"),
+                  icon: Icon(Icons.card_giftcard_rounded), label: "Campains"),
               BottomNavigationBarItem(
                   icon: Icon(Icons.person), label: "profile"),
             ],

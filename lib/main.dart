@@ -1,6 +1,5 @@
-import 'package:carrot/providers/user_provider.dart';
+import 'package:carrot/providers/index_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:carrot/Screens/login.dart';
 import 'package:provider/provider.dart';
 import 'Screens/main_screen.dart';
 import 'routes/generator.dart';
