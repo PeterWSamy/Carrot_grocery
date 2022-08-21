@@ -1,4 +1,4 @@
-import 'package:carrot/Screens/login.dart';
+import 'package:carrot/view/login_signup/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

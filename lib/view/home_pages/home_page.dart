@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/products_provider.dart';
+import '../../model/providers/products_provider.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           state.selectCategory(index);
-                          Navigator.of(context).pushNamed("/product");
+                          Navigator.of(context).pushNamed("/products");
                         },
                         child: Column(
                           children: [

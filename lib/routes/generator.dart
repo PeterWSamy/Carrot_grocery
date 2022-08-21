@@ -1,9 +1,10 @@
-import 'package:carrot/Screens/home.dart';
-import 'package:carrot/Screens/home_pages/products_page.dart';
-import 'package:carrot/products/product.dart';
+import 'package:carrot/view/home.dart';
+import 'package:carrot/view/home_pages/products_page.dart';
 import 'package:flutter/material.dart';
-import 'package:carrot/Screens/login.dart';
-import 'package:carrot/Screens/signup.dart';
+import 'package:carrot/view/login_signup/login.dart';
+import 'package:carrot/view/login_signup/signup.dart';
+
+import '../view/login_signup/signup.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -22,7 +23,7 @@ class RouteGenerator {
         return MaterialPageRoute(
           builder: (_) => Home(),
         );
-      case '/product':
+      case '/products':
         // Validation of correct data type
         return MaterialPageRoute(
           builder: (context) => ProductsPage(),

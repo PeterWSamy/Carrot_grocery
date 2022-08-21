@@ -1,12 +1,12 @@
-import 'package:carrot/providers/index_provider.dart';
+import 'package:carrot/model/providers/index_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:carrot/Screens/home_pages/home_page.dart';
-import 'package:carrot/Screens/search_page.dart';
-import 'package:carrot/Screens/cart.dart';
-import 'package:carrot/Screens/campaigns.dart';
-import 'package:carrot/Screens/profile_page.dart';
+import 'package:carrot/view/home_pages/home_page.dart';
+import 'package:carrot/view/search_page.dart';
+import 'package:carrot/view/cart.dart';
+import 'package:carrot/view/campaigns.dart';
+import 'package:carrot/view/profile_page.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
