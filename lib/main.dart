@@ -1,4 +1,5 @@
 import 'package:carrot/providers/index_provider.dart';
+import 'package:carrot/providers/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Screens/main_screen.dart';
@@ -17,8 +18,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Indexprovider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider( create: (context) => Indexprovider()),
+        ChangeNotifierProvider( create: (context) => ProductsProvider())
+      ],
       child: MaterialApp(
         title: 'Carrot',
         theme: ThemeData(

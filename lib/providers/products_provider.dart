@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 class ProductsProvider extends ChangeNotifier{
   var db = FirebaseFirestore.instance;
   List data = [] ;
+  var selectedCategory ;
   Future<void> loadDB() async {
      await db.collection("categories").get().then((event) {
       for (var doc in event.docs) {
@@ -11,6 +12,10 @@ class ProductsProvider extends ChangeNotifier{
       }
     });
     print("done");
+    notifyListeners();
+  }
+  void selectCategory(int index){
+    selectedCategory = data[index];
     notifyListeners();
   }
 }
