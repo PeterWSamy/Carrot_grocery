@@ -1,5 +1,5 @@
 import 'package:carrot/view/home.dart';
-import 'package:carrot/view/home_pages/products_page.dart';
+import 'package:carrot/view/home_pages/category_page.dart';
 import 'package:flutter/material.dart';
 import 'package:carrot/view/login_signup/login.dart';
 import 'package:carrot/view/login_signup/signup.dart';
