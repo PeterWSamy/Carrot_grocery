@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProductsPage extends StatelessWidget {
-  ProductsPage({Key? key}) : super(key: key);
+  const ProductsPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     if (Provider.of<ProductsProvider>(context, listen: false)
@@ -50,8 +50,8 @@ class ProductsPage extends StatelessWidget {
               .length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            crossAxisSpacing: 10.0,
-            mainAxisSpacing: 10.0,
+            crossAxisSpacing: 1.0,
+            mainAxisSpacing: 5.0,
             mainAxisExtent: 220,
           ),
           itemBuilder: (BuildContext context, int index) {

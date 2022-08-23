@@ -1,5 +1,6 @@
 import 'package:carrot/view/home.dart';
 import 'package:carrot/view/home_pages/category_page.dart';
+import 'package:carrot/view/home_pages/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:carrot/view/login_signup/login.dart';
 import 'package:carrot/view/login_signup/signup.dart';
@@ -21,12 +22,17 @@ class RouteGenerator {
       case '/home':
         // Validation of correct data type
         return MaterialPageRoute(
-          builder: (_) => Home(),
+          builder: (_) => const Home(),
         );
       case '/products':
         // Validation of correct data type
         return MaterialPageRoute(
-          builder: (context) => ProductsPage(),
+          builder: (context) => const ProductsPage(),
+        );
+      case '/product_details':
+        // Validation of correct data type
+        return MaterialPageRoute(
+          builder: (context) => const ProductDetails(),
         );
         // If args is not of the correct type, return an error page.
         // You can also throw an exception while in development.
