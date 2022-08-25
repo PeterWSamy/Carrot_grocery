@@ -102,6 +102,7 @@ class ProductDetails extends StatelessWidget {
               width: 380,
               height: 60,
               child: FloatingActionButton(
+                heroTag: "${Provider.of<ProductsProvider>(context, listen: false).selectedItem['name']}",
                 backgroundColor: const Color.fromARGB(255, 82, 205, 109),
                 shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
                 child: const Text("Add to cart",style: TextStyle(fontSize: 24),),

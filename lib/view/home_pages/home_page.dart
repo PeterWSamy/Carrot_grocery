@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/providers/products_provider.dart';
@@ -12,9 +10,9 @@ class HomePage extends StatelessWidget {
     return Consumer<ProductsProvider>(
       builder: (context, state, child) {
         state.loadDB();
-        if (state.data.length > 0) {
+        if (state.data.isNotEmpty) {
           return Scaffold(
-            backgroundColor: Color.fromARGB(31, 240, 240, 240),
+            backgroundColor: const Color.fromARGB(31, 240, 240, 240),
             body: ListView(
               children: [
                 Padding(
@@ -56,7 +54,7 @@ class HomePage extends StatelessWidget {
                         child: Column(
                           children: [
                             Container(
-                              padding: EdgeInsets.all(6.0),
+                              padding: const EdgeInsets.all(6.0),
                               child: Text(
                                 state.data[index]['name'],
                                 style: const TextStyle(

@@ -1,3 +1,4 @@
+import 'package:carrot/model/providers/count_provider.dart';
 import 'package:carrot/model/providers/products_provider.dart';
 import 'package:carrot/view/home_pages/widgets/category_item.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,9 @@ class ProductsPage extends StatelessWidget {
             mainAxisExtent: 220,
           ),
           itemBuilder: (BuildContext context, int index) {
-            return CategoryItem(index: index);
+            return ChangeNotifierProvider(
+                create: (context) => CountProvider(),
+                child: CategoryItem(index: index));
           },
         ),
       );

@@ -11,8 +11,8 @@ import 'package:carrot/view/profile_page.dart';
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
-  static List<Widget> _pages = <Widget>[
-   HomePage(), SearchPage(),Cart(),Campaigns(),ProfilePage()
+  static final List<Widget> _pages = <Widget>[
+   HomePage(), SearchPage(),const Cart(),const Campaigns(),ProfilePage()
   ];
   @override
   Widget build(BuildContext context) {
