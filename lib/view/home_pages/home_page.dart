@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../model/providers/products_provider.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Consumer<ProductsProvider>(
