@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:carrot/view/home_pages/widgets/horizontal_button_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,12 +9,19 @@ import '../../model/providers/products_provider.dart';
 // ignore: must_be_immutable
 class ProductDetails extends StatelessWidget {
   ProductDetails({Key? key}) : super(key: key);
+
+  void _addItem(context) {
+    Provider.of<ProductsProvider>(context, listen: false).addItem();
+  }
+
   // ignore: prefer_typing_uninitialized_variables
-  var provider ;
+  var provider;
+  var rnd = Random();
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of<ProductsProvider>(context,listen: false);
-    var count = provider.items[provider.selectedItem['name']] ?? 0;
+    provider = Provider.of<ProductsProvider>(context, listen: false);
+    
+
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
@@ -107,14 +116,14 @@ class ProductDetails extends StatelessWidget {
                 ),
               ),
             ),
-            Builder(builder: (context) {
+            Consumer<ProductsProvider>(builder: (context, state, child) {
+              var count = provider.items[provider.selectedItem['name']] ?? 0;
               if (count == 0) {
                 return SizedBox(
                   width: 380,
                   height: 60,
                   child: FloatingActionButton(
-                    heroTag:
-                        "${Provider.of<ProductsProvider>(context, listen: false).selectedItem['name']}",
+                    heroTag: "${rnd.nextInt(900)}",
                     backgroundColor: const Color.fromARGB(255, 82, 205, 109),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -122,13 +131,13 @@ class ProductDetails extends StatelessWidget {
                       "Add to cart",
                       style: TextStyle(fontSize: 24),
                     ),
-                    onPressed: () {},
+                    onPressed: () => _addItem(context),
                   ),
                 );
               } else {
                 return HorizontalButtonCounter();
               }
-            }),
+            })
           ]),
         ),
       ),

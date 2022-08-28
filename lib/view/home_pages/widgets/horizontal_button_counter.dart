@@ -14,15 +14,16 @@ class HorizontalButtonCounter extends StatelessWidget {
   void _decrement(BuildContext context) {
     Provider.of<ProductsProvider>(context, listen: false).decreaseQuantity();
   }
-
+  
   int count = 0;
   var rnd = Random();
   
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<ProductsProvider>(context,listen: false);
-    count = provider.items[provider.selectedItem['name']];
-    return Center(
+    count = provider.items[provider.selectedItem['name']] ?? 0;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(90.0,0.0,0.0,0.0),
       child: Row(
         children: [
           SizedBox(
@@ -33,8 +34,8 @@ class HorizontalButtonCounter extends StatelessWidget {
               shape: const BeveledRectangleBorder(
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(5),
-                      bottomRight: Radius.circular(5))),
-              onPressed: () => _increment(context),
+                      topLeft: Radius.circular(5))),
+              onPressed: () => _decrement(context),
               backgroundColor: const Color.fromARGB(255, 255, 255, 255),
               child: const Icon(
                 Icons.remove,
@@ -61,11 +62,11 @@ class HorizontalButtonCounter extends StatelessWidget {
             width: 60,
             child: FloatingActionButton(
               heroTag: "${rnd.nextInt(500)}",
-              shape: const BeveledRectangleBorder(
+              shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(5),
-                      bottomRight: Radius.circular(5))),
-              onPressed: () => _decrement(context),
+                      bottomRight: Radius.circular(5),
+                      topRight: Radius.circular(5))),
+              onPressed: () => _increment(context),
               backgroundColor: const Color.fromARGB(255, 255, 255, 255),
               child: const Icon(
                 Icons.add,

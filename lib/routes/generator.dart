@@ -1,10 +1,11 @@
 import 'package:carrot/view/home.dart';
-import 'package:carrot/view/home_pages/category_page.dart';
+import 'package:carrot/view/Cart/category_page.dart';
 import 'package:carrot/view/home_pages/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:carrot/view/login_signup/login.dart';
 import 'package:carrot/view/login_signup/signup.dart';
 
+import '../view/Cart/cart_page.dart';
 import '../view/login_signup/signup.dart';
 
 class RouteGenerator {
@@ -15,27 +16,32 @@ class RouteGenerator {
       case '/':
         return MaterialPageRoute(builder: (_) => LoginPage());
       case '/signup':
-        // Validation of correct data type
+        //new route
         return MaterialPageRoute(
           builder: (_) => SignUp(),
         );
       case '/home':
-        // Validation of correct data type
+        //new route
         return MaterialPageRoute(
           builder: (_) => const Home(),
         );
       case '/products':
-        // Validation of correct data type
+        //new route
         return MaterialPageRoute(
           builder: (context) => const ProductsPage(),
         );
       case '/product_details':
-        // Validation of correct data type
         return MaterialPageRoute(
           builder: (context) => ProductDetails(),
         );
+      case '/cart':
+        //new route
+        return MaterialPageRoute(
+          builder: (context) => CartPage(),
+        );
+      
+      
         // If args is not of the correct type, return an error page.
-        // You can also throw an exception while in development.
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();

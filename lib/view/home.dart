@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'package:carrot/view/home_pages/home_page.dart';
 import 'package:carrot/view/search_page.dart';
-import 'package:carrot/view/cart.dart';
+import 'package:carrot/view/Cart/cart.dart';
 import 'package:carrot/view/campaigns.dart';
 import 'package:carrot/view/profile_page.dart';
 
@@ -36,38 +36,7 @@ class _HomeState extends State<Home> {
             } else {
               return Consumer<Indexprovider>(builder: (context, state, child) {
                 return Scaffold(
-                    appBar: AppBar(
-                      actions: const [
-                        Image(
-                          image: AssetImage(
-                            "assets/images/Group_7001.png",
-                          ),
-                        ),
-                        Expanded(
-                            child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Carrot",
-                            style: TextStyle(
-                                color: Colors.black54,
-                                fontWeight: FontWeight.bold,fontSize: 16 ),
-                          ),
-                        )),
-                        Icon(
-                          Icons.location_on,
-                          color: Colors.black54,
-                        ),
-                        Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Home  ",
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.bold),
-                            )),
-                      ],
-                      backgroundColor: Colors.white,
-                    ),
+                    
                     body: Center(
                         child: Home._pages.elementAt(state.selectedItem)),
                     bottomNavigationBar: BottomNavigationBar(
