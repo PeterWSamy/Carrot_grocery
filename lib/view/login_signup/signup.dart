@@ -168,7 +168,7 @@ class SignUp extends StatelessWidget {
         FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: email.text, password: password.text);
       } catch (e) {
-        print(e);
+        //print(e);
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

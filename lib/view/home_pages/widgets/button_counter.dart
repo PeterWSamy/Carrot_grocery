@@ -1,23 +1,33 @@
-import 'package:carrot/model/providers/count_provider.dart';
+import 'package:carrot/model/providers/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'dart:math';
 
 class ButtonCounter extends StatelessWidget {
-  ButtonCounter({Key? key}) : super(key: key);
+  ButtonCounter({Key? key,int? index}) : super(key: key){
+    this.index = index!;
+  }
+
   void _increment(BuildContext context) {
-    Provider.of<CountProvider>(context, listen: false).increment();
+    Provider.of<ProductsProvider>(context, listen: false).increaseQuantity();
   }
 
   void _decrement(BuildContext context) {
-    Provider.of<CountProvider>(context, listen: false).decrement();
+    Provider.of<ProductsProvider>(context, listen: false).decreaseQuantity();
   }
+
+  void _addItem(BuildContext context) {
+    Provider.of<ProductsProvider>(context, listen: false).addItem();
+  }
+
+  int index = 0;
   var rnd = Random();
   @override
   Widget build(BuildContext context) {
-    var count = Provider.of<CountProvider>(context, listen: false).count;
+    var count = Provider.of<ProductsProvider>(context, listen: false).currentCount;
     if (count == 0) {
+      Provider.of<ProductsProvider>(context,listen: false).selectItem(index);
       return Align(
         alignment: Alignment.topRight,
         child: SizedBox(
@@ -27,7 +37,7 @@ class ButtonCounter extends StatelessWidget {
             heroTag: "con",
             shape: const BeveledRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5))),
-            onPressed: () => _increment(context),
+            onPressed: () => _addItem(context),
             backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             child: const Icon(
               Icons.add,
@@ -68,7 +78,7 @@ class ButtonCounter extends StatelessWidget {
                 onPressed: null,
                 backgroundColor: const Color.fromARGB(255, 0, 204, 105),
                 child: Text(
-                  "${count}",
+                  "$count",
                   style: const TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
                   ),
@@ -98,5 +108,4 @@ class ButtonCounter extends StatelessWidget {
     }
   }
 }
-
 //${Provider.of<ProductsProvider>(context,listen: false).itemIndex}

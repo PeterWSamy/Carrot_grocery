@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
     }catch(e){
       ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("Error happened")));
-      print(e);
+      //print(e);
     }
   }
 

@@ -1,4 +1,4 @@
-import 'package:carrot/model/providers/count_provider.dart';
+import 'package:carrot/model/providers/products_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,16 +8,18 @@ import 'dart:math';
 class HorizontalButtonCounter extends StatelessWidget {
   HorizontalButtonCounter({Key? key}) : super(key: key);
   void _increment(BuildContext context) {
-    Provider.of<CountProvider>(context, listen: false).increment();
+    Provider.of<ProductsProvider>(context, listen: false).increaseQuantity();
   }
 
   void _decrement(BuildContext context) {
-    Provider.of<CountProvider>(context, listen: false).decrement();
+    Provider.of<ProductsProvider>(context, listen: false).decreaseQuantity();
   }
 
+  int count = 0;
   var rnd = Random();
   @override
   Widget build(BuildContext context) {
+    count = Provider.of<ProductsProvider>(context,listen: false).currentCount;
     return Row(
       children: [
         SizedBox(
@@ -43,11 +45,11 @@ class HorizontalButtonCounter extends StatelessWidget {
           child: FloatingActionButton(
             heroTag: "${rnd.nextInt(500)}",
             shape: const BeveledRectangleBorder(),
-            onPressed: () => _increment(context),
-            backgroundColor: Color.fromARGB(255, 82, 204, 109),
-            child: const Icon(
-              Icons.add,
-              color: Color.fromARGB(255, 255, 255, 255),
+            onPressed: () {},
+            backgroundColor: const Color.fromARGB(255, 82, 204, 109),
+            child: Text(
+              "$count",
+              style: const TextStyle(color: Colors.white, fontSize: 16),
             ),
           ),
         ),
@@ -72,5 +74,3 @@ class HorizontalButtonCounter extends StatelessWidget {
     );
   }
 }
-
-//${Provider.of<ProductsProvider>(context,listen: false).itemIndex}

@@ -28,5 +28,15 @@ class Product {
       required this.price,
       required this.image,
       required this.description});
+  void increment(){
+    quantity++;
+  }
+
+  void decrement(){
+    quantity--;
+  }
   
+  void setQuantity(int value){
+    quantity = value;
+  }
 }

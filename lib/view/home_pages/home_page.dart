@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Align(
                     alignment: Alignment.topCenter,
-                    child: Container(
+                    child: SizedBox(
                       height: 190,
                       width: 320,
                       child: Image.asset("assets/images/Campaign.png"),
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
                                 textAlign: TextAlign.center,
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               height: 70,
                               width: 90,
                               child: Image.network(state.data[index]['image']),
