@@ -9,7 +9,7 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var count = Provider.of<ProductsProvider>(context,listen: false).currentCount;
+    var count = Provider.of<ProductsProvider>(context,listen: false).currentCount();
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
@@ -98,11 +98,9 @@ class ProductDetails extends StatelessWidget {
               height: 320,
               child: Align(
                 alignment: Alignment.topLeft,
-                child: Expanded(
-                  child: Text(
-                    "${Provider.of<ProductsProvider>(context, listen: false).selectedItem["description"]}",
-                    style: const TextStyle(fontSize: 13, color: Colors.black45),
-                  ),
+                child: Text(
+                  "${Provider.of<ProductsProvider>(context, listen: false).selectedItem["description"]}",
+                  style: const TextStyle(fontSize: 13, color: Colors.black45),
                 ),
               ),
             ),

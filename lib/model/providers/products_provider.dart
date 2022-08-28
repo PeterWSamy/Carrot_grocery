@@ -88,10 +88,10 @@ class ProductsProvider extends ChangeNotifier {
     }
   }
 
-  int get currentCount {
-    if(selectedItem == null){
-      return 0;
+  int currentCount() {
+    if(selectedItem != null){
+      return items[selectedItem['name']] ?? 0;
     }
-    return items[selectedItem['name']] ?? 0;
+    return 0;
   } 
 }

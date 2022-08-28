@@ -48,7 +48,7 @@ class CategoryItem extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "\$${Provider.of<ProductsProvider>(context, listen: false).selectedCategory?['items'][index]['price']}",
+                    "\$${Provider.of<ProductsProvider>(context, listen: false).selectedCategory['items'][index]['price']}",
                     style: const TextStyle(
                         color: Color.fromARGB(255, 82, 205, 109),
                         fontWeight: FontWeight.bold,
@@ -75,7 +75,7 @@ class CategoryItem extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "${Provider.of<ProductsProvider>(context, listen: false).selectedCategory?['items'][index]['weight']}",
+                    "${Provider.of<ProductsProvider>(context, listen: false).selectedCategory['items'][index]['weight']}",
                     style: const TextStyle(color: Colors.black45, fontSize: 14),
                     textAlign: TextAlign.left,
                   ),
@@ -87,7 +87,7 @@ class CategoryItem extends StatelessWidget {
         Positioned(
           top: 0,
           right: 5,
-          child: ButtonCounter(index:index),
+          child: ButtonCounter(index: index),
         ),
       ],
     );

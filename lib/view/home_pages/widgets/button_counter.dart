@@ -4,8 +4,9 @@ import 'package:provider/provider.dart';
 
 import 'dart:math';
 
+// ignore: must_be_immutable
 class ButtonCounter extends StatelessWidget {
-  ButtonCounter({Key? key,int? index}) : super(key: key){
+  ButtonCounter({Key? key, int? index}) : super(key: key) {
     this.index = index!;
   }
 
@@ -22,19 +23,22 @@ class ButtonCounter extends StatelessWidget {
   }
 
   int index = 0;
+  int count = 0;
   var rnd = Random();
   @override
   Widget build(BuildContext context) {
-    var count = Provider.of<ProductsProvider>(context, listen: false).currentCount;
+    count =
+        Provider.of<ProductsProvider>(context, listen: false).currentCount();
+    Provider.of<ProductsProvider>(context, listen: false).selectItem(index);
+
     if (count == 0) {
-      Provider.of<ProductsProvider>(context,listen: false).selectItem(index);
       return Align(
         alignment: Alignment.topRight,
         child: SizedBox(
           width: 34,
           height: 35,
           child: FloatingActionButton(
-            heroTag: "con",
+            heroTag: "${rnd.nextInt(500)}",
             shape: const BeveledRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5))),
             onPressed: () => _addItem(context),
