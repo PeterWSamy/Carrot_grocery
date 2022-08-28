@@ -43,14 +43,14 @@ class _HomeState extends State<Home> {
                             "assets/images/Group_7001.png",
                           ),
                         ),
-                        Center(
+                        Expanded(
                             child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
                             "Carrot",
                             style: TextStyle(
                                 color: Colors.black54,
-                                fontWeight: FontWeight.bold),
+                                fontWeight: FontWeight.bold,fontSize: 16 ),
                           ),
                         )),
                         Icon(

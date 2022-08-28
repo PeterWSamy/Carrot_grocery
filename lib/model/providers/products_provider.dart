@@ -45,7 +45,7 @@ class ProductsProvider extends ChangeNotifier {
   //selects the index of the item in the category to display it
   void selectItem(int index) {
     itemIndex = index;
-    selectedItem = selectedCategory["items"][index];
+    selectedItem = selectedCategory['items'][index];
     notifyListeners();
   }
 
@@ -59,39 +59,44 @@ class ProductsProvider extends ChangeNotifier {
         price: newItem['price'],
         image: newItem['image']);
     item.increment();
+    items[selectedItem['name']] = 1;
     cartItems.add(item);
     notifyListeners();
   }
 
-  void increaseQuantity(){
-    Product item = cartItems.where((element) => element.name == selectedItem.name) as Product;
-    item.increment();
-    items[item.name] = item.quantity;
-    notifyListeners();
-  }
-
-  void decreaseQuantity(){
-    Product item = cartItems.where((element) => element.name == selectedItem.name) as Product;
-    item.decrement();
-    items[item.name] = item.quantity;
-    if(item.quantity <= 0){
-      cartItems.remove(item);
-      items.remove(item.name);
+  void increaseQuantity() {
+    Product item;
+    for (var itemI in cartItems) {
+      if (itemI.name == selectedItem['name']) {
+        item = itemI;
+        item.increment();
+        items[item.name] = item.quantity;
+      }
     }
     notifyListeners();
   }
 
-  void addToDatabase(){
-    for (var cartItem in cartItems){
+  void decreaseQuantity() {
+    Product item;
+    for (var itemI in cartItems) {
+      if (itemI.name == selectedItem['name']) {
+        item = itemI;
+        item.decrement();
+        items[item.name] = item.quantity;
+
+        if (item.quantity <= 0) {
+          cartItems.remove(item);
+          items.remove(item.name);
+        }
+      }
+    }
+    notifyListeners();
+  }
+
+  void addToDatabase() {
+    for (var cartItem in cartItems) {
       contactsBox.add(cartItem);
       cartItems.remove(cartItem);
     }
   }
-
-  int currentCount() {
-    if(selectedItem != null){
-      return items[selectedItem['name']] ?? 0;
-    }
-    return 0;
-  } 
 }

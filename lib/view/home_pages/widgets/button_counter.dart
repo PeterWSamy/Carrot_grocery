@@ -11,27 +11,33 @@ class ButtonCounter extends StatelessWidget {
   }
 
   void _increment(BuildContext context) {
+    _selectItem(context);
     Provider.of<ProductsProvider>(context, listen: false).increaseQuantity();
   }
 
   void _decrement(BuildContext context) {
+    _selectItem(context);
     Provider.of<ProductsProvider>(context, listen: false).decreaseQuantity();
   }
 
   void _addItem(BuildContext context) {
+    _selectItem(context);
     Provider.of<ProductsProvider>(context, listen: false).addItem();
   }
 
+  void _selectItem(BuildContext context){
+    Provider.of<ProductsProvider>(context, listen: false).selectItem(index);
+  }
   int index = 0;
-  int count = 0;
   var rnd = Random();
   @override
   Widget build(BuildContext context) {
-    count =
-        Provider.of<ProductsProvider>(context, listen: false).currentCount();
-    Provider.of<ProductsProvider>(context, listen: false).selectItem(index);
-
-    if (count == 0) {
+   var provider = Provider.of<ProductsProvider>(context, listen: false);
+    
+    var  count = 
+        provider.items[provider.selectedCategory['items'][index]['name']] ?? 0;
+    
+    if (count == 0 ) {
       return Align(
         alignment: Alignment.topRight,
         child: SizedBox(

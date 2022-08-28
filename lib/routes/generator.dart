@@ -32,7 +32,7 @@ class RouteGenerator {
       case '/product_details':
         // Validation of correct data type
         return MaterialPageRoute(
-          builder: (context) => const ProductDetails(),
+          builder: (context) => ProductDetails(),
         );
         // If args is not of the correct type, return an error page.
         // You can also throw an exception while in development.

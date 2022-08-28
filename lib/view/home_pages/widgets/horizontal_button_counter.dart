@@ -17,9 +17,11 @@ class HorizontalButtonCounter extends StatelessWidget {
 
   int count = 0;
   var rnd = Random();
+  
   @override
   Widget build(BuildContext context) {
-    count = Provider.of<ProductsProvider>(context,listen: false).currentCount();
+    var provider = Provider.of<ProductsProvider>(context,listen: false);
+    count = provider.items[provider.selectedItem['name']];
     return Center(
       child: Row(
         children: [

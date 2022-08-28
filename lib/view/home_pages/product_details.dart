@@ -4,12 +4,15 @@ import 'package:provider/provider.dart';
 
 import '../../model/providers/products_provider.dart';
 
+// ignore: must_be_immutable
 class ProductDetails extends StatelessWidget {
-  const ProductDetails({Key? key}) : super(key: key);
-
+  ProductDetails({Key? key}) : super(key: key);
+  // ignore: prefer_typing_uninitialized_variables
+  var provider ;
   @override
   Widget build(BuildContext context) {
-    var count = Provider.of<ProductsProvider>(context,listen: false).currentCount();
+    provider = Provider.of<ProductsProvider>(context,listen: false);
+    var count = provider.items[provider.selectedItem['name']] ?? 0;
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
