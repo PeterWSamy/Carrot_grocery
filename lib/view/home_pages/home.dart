@@ -36,7 +36,6 @@ class _HomeState extends State<Home> {
             } else {
               return Consumer<Indexprovider>(builder: (context, state, child) {
                 return Scaffold(
-                    
                     body: Center(
                         child: Home._pages.elementAt(state.selectedItem)),
                     bottomNavigationBar: BottomNavigationBar(
@@ -64,5 +63,12 @@ class _HomeState extends State<Home> {
             return const Scaffold();
           }
         });
+  }
+
+  @override
+  void dispose() {
+    Hive.box('carts').compact();
+    Hive.close();
+    super.dispose();
   }
 }

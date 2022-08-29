@@ -10,6 +10,7 @@ class HomePage extends StatelessWidget {
     return Consumer<ProductsProvider>(
       builder: (context, state, child) {
         state.loadDB();
+        state.initialAdd();
         if (state.data.isNotEmpty) {
           return Scaffold(
             appBar: AppBar(

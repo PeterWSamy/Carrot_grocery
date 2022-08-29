@@ -1,4 +1,4 @@
-import 'package:carrot/view/home.dart';
+import 'package:carrot/view/home_pages/home.dart';
 import 'package:carrot/view/Cart/category_page.dart';
 import 'package:carrot/view/home_pages/product_details.dart';
 import 'package:flutter/material.dart';

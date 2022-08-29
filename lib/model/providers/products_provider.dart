@@ -7,12 +7,11 @@ class ProductsProvider extends ChangeNotifier {
   var db = FirebaseFirestore.instance;
 
   //Hive database
-  final contactsBox = Hive.box('carts');
-
+  final products = Hive.box("carts");
   List data = [];
 
   //to save the product being selected
-  List cartItems = [];
+  List cartItemsSaved = [];
 
   //for saving count of the data
   Map<String, dynamic> items = {};
@@ -60,43 +59,66 @@ class ProductsProvider extends ChangeNotifier {
         image: newItem['image']);
     item.increment();
     items[selectedItem['name']] = 1;
-    cartItems.add(item);
+    cartItemsSaved.add(item);
+    products.add(item);
     notifyListeners();
   }
 
   void increaseQuantity() {
     Product item;
-    for (var itemI in cartItems) {
-      if (itemI.name == selectedItem['name']) {
-        item = itemI;
+    for (var index =0; index <products.length; index  ++) {
+      if (products.getAt(index ).name == selectedItem['name']) {
+        item = products.getAt(index );
         item.increment();
         items[item.name] = item.quantity;
+        products.putAt(index ,item);
       }
     }
+    
     notifyListeners();
   }
 
   void decreaseQuantity() {
     Product item;
-    for (var itemI in cartItems) {
-      if (itemI.name == selectedItem['name']) {
-        item = itemI;
+    for (var index =0; index <products.length; index  ++) {
+      if (products.getAt(index ).name == selectedItem['name']) {
+        item = products.getAt(index );
         item.decrement();
         items[item.name] = item.quantity;
-
+        products.putAt(index , item);
         if (item.quantity <= 0) {
-          cartItems.remove(item);
+          cartItemsSaved.remove(item);
           items.remove(item.name);
+          products.deleteAt(index );
         }
       }
     }
+
     notifyListeners();
   }
 
-  void addToDatabase() {
-    for (var cartItem in cartItems) {
-      contactsBox.add(cartItem);
-      cartItems.remove(cartItem);
+  void initialAdd() {
+    cartItemsSaved = [];
+    for (int i = 0; i < products.length; i++) {
+      var item = products.getAt(i);
+      cartItemsSaved.add(item);
+      items[item.name] = item.quantity;
     }
+  }
+
+  void deleteDataBase() {
+    for (int i = 0; i < products.length; i++) {
+      items.remove(products.getAt(i).name);
+      products.deleteAt(i);
+    }
+    cartItemsSaved = [];
+    items = {};
+    notifyListeners();
+  }
+
+  void deleteFormDB(int index){
+    cartItemsSaved.remove(products.getAt(index));
+    products.deleteAt(index);
+    notifyListeners();
   }
 }
