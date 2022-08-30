@@ -39,6 +39,7 @@ class _HomeState extends State<Home> {
                     body: Center(
                         child: Home._pages.elementAt(state.selectedItem)),
                     bottomNavigationBar: BottomNavigationBar(
+                      type: BottomNavigationBarType.fixed,
                       items: const <BottomNavigationBarItem>[
                         BottomNavigationBarItem(
                             icon: Icon(Icons.home), label: "Home"),

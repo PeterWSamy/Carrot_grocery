@@ -1,5 +1,5 @@
 import 'package:carrot/view/home_pages/home.dart';
-import 'package:carrot/view/Cart/category_page.dart';
+import 'package:carrot/view/home_pages/category_page.dart';
 import 'package:carrot/view/home_pages/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:carrot/view/login_signup/login.dart';
@@ -37,7 +37,7 @@ class RouteGenerator {
       case '/cart':
         //new route
         return MaterialPageRoute(
-          builder: (context) => CartPage(),
+          builder: (context) => const CartPage(),
         );
       
       

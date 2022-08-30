@@ -9,13 +9,12 @@ class Cart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Provider.of<ProductsProvider>(context, listen: false).addToDatabase();
     return Consumer<ProductsProvider>(
       builder: (context, state, child) {
         return Scaffold(
           appBar: AppBar(backgroundColor: Colors.white, actions: [
-            const Padding(padding: EdgeInsets.all(8.0)),
-            const IconButton(onPressed: null, icon: Icon(Icons.close)),
+            const Padding(padding: EdgeInsets.all(4.0)),
+            const IconButton(onPressed: null,alignment: Alignment.centerLeft, icon: Icon(Icons.close),color: Colors.black,),
             const Expanded(
                 child: Align(
                     alignment: Alignment.center,
@@ -28,7 +27,10 @@ class Cart extends StatelessWidget {
                     ))),
             IconButton(
                 onPressed: () => state.deleteDataBase(),
-                icon: const Icon(Icons.ac_unit_sharp)),
+                icon: const Icon(Icons.delete_outline),
+                color: Colors.black,
+                
+                ),
           ]),
           body: Consumer<ProductsProvider>(
             builder: (context, state, child) {
@@ -94,7 +96,7 @@ class Cart extends StatelessWidget {
                   ),
                 );
               } else {
-                return CartPage();
+                return const CartPage();
               }
             },
           ),

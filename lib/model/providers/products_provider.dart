@@ -24,6 +24,9 @@ class ProductsProvider extends ChangeNotifier {
   int itemIndex = 0;
   int categoryIndex = 0;
 
+  //total price
+  double totalPrice = 0.0;
+
 // load the store items in the data[]
   Future<void> loadDB() async {
     await db.collection("categories").get().then((event) {
@@ -61,64 +64,75 @@ class ProductsProvider extends ChangeNotifier {
     items[selectedItem['name']] = 1;
     cartItemsSaved.add(item);
     products.add(item);
+
     notifyListeners();
   }
 
   void increaseQuantity() {
     Product item;
-    for (var index =0; index <products.length; index  ++) {
-      if (products.getAt(index ).name == selectedItem['name']) {
-        item = products.getAt(index );
+    for (var index = 0; index < products.length; index++) {
+      if (products.getAt(index).name == selectedItem['name']) {
+        item = products.getAt(index);
         item.increment();
         items[item.name] = item.quantity;
-        products.putAt(index ,item);
+        products.putAt(index, item);
       }
     }
-    
+    updatePrice();
     notifyListeners();
   }
 
   void decreaseQuantity() {
     Product item;
-    for (var index =0; index <products.length; index  ++) {
-      if (products.getAt(index ).name == selectedItem['name']) {
-        item = products.getAt(index );
+    for (var index = 0; index < products.length; index++) {
+      if (products.getAt(index).name == selectedItem['name']) {
+        item = products.getAt(index);
         item.decrement();
         items[item.name] = item.quantity;
-        products.putAt(index , item);
+        products.putAt(index, item);
         if (item.quantity <= 0) {
           cartItemsSaved.remove(item);
           items.remove(item.name);
-          products.deleteAt(index );
+          products.deleteAt(index);
         }
       }
     }
-
+    updatePrice();
     notifyListeners();
   }
 
   void initialAdd() {
     cartItemsSaved = [];
+    items = {};
     for (int i = 0; i < products.length; i++) {
       var item = products.getAt(i);
       cartItemsSaved.add(item);
       items[item.name] = item.quantity;
     }
+    updatePrice();
   }
 
   void deleteDataBase() {
+    cartItemsSaved.clear();
+    items.clear();
     for (int i = 0; i < products.length; i++) {
-      items.remove(products.getAt(i).name);
       products.deleteAt(i);
     }
-    cartItemsSaved = [];
-    items = {};
     notifyListeners();
   }
 
-  void deleteFormDB(int index){
-    cartItemsSaved.remove(products.getAt(index));
+  void deleteFormDB(int index) {
+    cartItemsSaved.removeAt(index);
+    items.removeWhere((key, value) => key == products.getAt(index).name);
     products.deleteAt(index);
+    updatePrice();
     notifyListeners();
+  }
+
+  void updatePrice(){
+    totalPrice = 0.0;
+    for (var item in cartItemsSaved) {
+      totalPrice += item.price*item.quantity;
+    }
   }
 }
