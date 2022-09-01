@@ -7,7 +7,8 @@ import '../../../model/providers/products_provider.dart';
 
 // ignore: must_be_immutable
 class Button extends StatelessWidget {
-  Button({Key? key,required index}) : super(key: key);
+  Button({Key? key,required index}) : super(key: key){
+    this.index = index!; }
 
   void _increment(BuildContext context) {
     _selectItem(context);

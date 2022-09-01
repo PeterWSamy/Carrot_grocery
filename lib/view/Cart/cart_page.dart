@@ -10,7 +10,7 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<ProductsProvider>(context, listen: false);
-    ValueNotifier cartI = ValueNotifier<List>(provider.cartItemsSaved);
+    ValueNotifier cartI = ValueNotifier<dynamic>(provider.products);
     return Consumer<ProductsProvider>(
       builder: (context, state, child) {
         return Scaffold(
@@ -130,18 +130,20 @@ class CartPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 50,
                             width: 300,
                             child: FloatingActionButton(
-                              backgroundColor: Color.fromARGB(255, 82, 205, 109),
-                                shape: RoundedRectangleBorder(
+                              backgroundColor: const Color.fromARGB(255, 82, 205, 109),
+                                shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(10),
                                   bottomRight: Radius.circular(10),
                                 )),
-                                onPressed: null,
-                                child: Text(
+                                onPressed: (){
+                                  Navigator.of(context).pushNamed("/checkout");
+                                },
+                                child: const Text(
                                   "Checkout",
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 18),

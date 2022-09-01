@@ -1,4 +1,5 @@
 import 'package:carrot/model/providers/products_provider.dart';
+import 'package:carrot/res/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,12 @@ class Cart extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(backgroundColor: Colors.white, actions: [
             const Padding(padding: EdgeInsets.all(4.0)),
-            const IconButton(onPressed: null,alignment: Alignment.centerLeft, icon: Icon(Icons.close),color: Colors.black,),
+            const IconButton(
+              onPressed: null,
+              alignment: Alignment.centerLeft,
+              icon: Icon(Icons.close),
+              color: Colors.black,
+            ),
             const Expanded(
                 child: Align(
                     alignment: Alignment.center,
@@ -26,14 +32,13 @@ class Cart extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ))),
             IconButton(
-                onPressed: () => state.deleteDataBase(),
-                icon: const Icon(Icons.delete_outline),
-                color: Colors.black,
-                
-                ),
+              onPressed: () => state.deleteDataBase(),
+              icon: const Icon(Icons.delete_outline),
+              color: Colors.black,
+            ),
           ]),
-          body: Consumer<ProductsProvider>(
-            builder: (context, state, child) {
+          body: Builder(
+            builder: (context) {
               if (Provider.of<ProductsProvider>(context, listen: false)
                   .cartItemsSaved
                   .isEmpty) {
@@ -49,27 +54,31 @@ class Cart extends StatelessWidget {
                         const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            "Your cart is empty",
+                           StringConstants.cartEmptyMain,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
-                        const Text(
-                          "Looks like you haven't made",
-                          style: TextStyle(
-                            color: Colors.black38,
-                            fontSize: 16,
+                        const SizedBox(
+                          width: 253,
+                          child: Text(
+                            StringConstants.cartEmptySub,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black38,
+                              fontSize: 16,
+                            ),
                           ),
                         ),
-                        const Text(
-                          "your choice yet",
-                          style: TextStyle(
-                            color: Colors.black38,
-                            fontSize: 16,
-                          ),
-                        ),
+                        // const Text(
+                        //   "your choice yet",
+                        //   style: TextStyle(
+                        //     color: Colors.black38,
+                        //     fontSize: 16,
+                        //   ),
+                        // ),
                         const SizedBox(
                           height: 30,
                         ),

@@ -115,9 +115,7 @@ class ProductsProvider extends ChangeNotifier {
   void deleteDataBase() {
     cartItemsSaved.clear();
     items.clear();
-    for (int i = 0; i < products.length; i++) {
-      products.deleteAt(i);
-    }
+    products.deleteAll(products.keys);
     notifyListeners();
   }
 

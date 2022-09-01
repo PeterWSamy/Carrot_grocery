@@ -1,3 +1,4 @@
+import 'package:carrot/view/Cart/checkout_page.dart';
 import 'package:carrot/view/home_pages/home.dart';
 import 'package:carrot/view/home_pages/category_page.dart';
 import 'package:carrot/view/home_pages/product_details.dart';
@@ -38,6 +39,11 @@ class RouteGenerator {
         //new route
         return MaterialPageRoute(
           builder: (context) => const CartPage(),
+        );
+      case '/checkout':
+        //new route
+        return MaterialPageRoute(
+          builder: (context) => const Checkout(),
         );
       
       

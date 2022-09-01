@@ -65,11 +65,4 @@ class _HomeState extends State<Home> {
           }
         });
   }
-
-  @override
-  void dispose() {
-    Hive.box('carts').compact();
-    Hive.close();
-    super.dispose();
-  }
 }
